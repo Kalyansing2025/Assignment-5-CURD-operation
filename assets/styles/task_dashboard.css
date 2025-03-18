@@ -1,0 +1,175 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    background: black;
+    padding: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.navbar ul .active {
+    border-bottom: 2px solid white;
+}
+
+/* Task Summary */
+.task-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f5f7fa;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-task {
+    background: blue;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Task Container */
+.task-container {
+    background: #f5f7fa;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Task Header */
+.task-header {
+    display: flex;
+    padding: 10px;
+    font-weight: bold;
+    background: #e8e9f1;
+}
+
+.task-title {
+    flex: 2;
+}
+
+.task-assigned {
+    flex: 1.4;
+}
+
+/* Task Rows */
+.task-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background: white;
+}
+
+.task-details {
+    display: flex;
+    align-items: center;
+    flex: 2;
+}
+
+.task-details input {
+    margin-right: 10px;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-name {
+    font-weight: bold;
+}
+
+.task-meta {
+    color: gray;
+    font-size: 12px;
+}
+
+/* Assigned To */
+.task-assignee {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.initial {
+    background: pink;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-weight: bold;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Edit Button - Green */
+.edit-task {
+    background-color: green;  /* Green background */
+    color: white;  /* White text */
+    border: none;  /* Remove border */
+    padding: 8px 12px;  /* Adjust padding */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;  /* Pointer on hover */
+    transition: background 0.3s ease; /* Smooth color transition */
+    margin-right: 10px;
+}
+
+.edit-task:hover {
+    background-color: darkgreen; /* Darker green on hover */
+}
+
+/* Delete Button - Red */
+.delete-task {
+    background-color: red;  /* Red background */
+    color: white;  /* White text */
+    border: none;  /* Remove border */
+    padding: 8px 12px;  /* Adjust padding */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;  /* Pointer on hover */
+    transition: background 0.3s ease; /* Smooth color transition */
+}
+
+.delete-task:hover {
+    background-color: darkred; /* Darker red on hover */
+}

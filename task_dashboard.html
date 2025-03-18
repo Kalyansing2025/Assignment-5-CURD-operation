@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="./assets/styles/task_dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li>My Tasks</li>
+                <li>Track Tasks</li>
+                <li class="active">All Tasks</li>
+            </ul>
+        </nav>
+
+        <div class="task-summary">
+            <div class="left-buttons">
+                <button class="btn">Total <span id="totalTasks">0</span></button>
+                <button class="btn">Open <span id="openTasks">0</span></button>
+                <button class="btn">Completed <span id="completedTasks">0</span></button>
+            </div>
+            <div class="right-buttons">
+                <button class="add-task" id="addTaskBtn">Add Task</button>
+            </div>
+        </div>
+
+        <div class="task-container">
+            <div class="task-header">
+                <div class="task-title">Task Details</div>
+                <div class="task-assigned">Assigned To</div>
+            </div>
+            <div class="task-body"></div> <!-- Tasks will be loaded here -->
+        </div>
+    </div>
+
+    <script src="./assets/scripts/task_dashboard.js"></script>
+</body>
+
+</html>

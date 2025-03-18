@@ -1,0 +1,140 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    margin-top: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background: #EAEFF5;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left span {
+    font-weight: bold;
+}
+
+.task-owner {
+    background: #D7EBFF;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-owner .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-owner .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.task-owner .right {
+    text-align: right;
+}
+
+.task-owner .right span {
+    display: block;
+    font-size: 14px;
+}
+
+.task-owner .status {
+    color: green;
+    font-weight: bold;
+}
+
+.task-details {
+    padding: 15px;
+    border-top: 1px solid #ccc;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-table tr {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.details-table td {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.details-table td:first-child {
+    font-weight: bold;
+    color: gray;
+    padding: 10px;
+}
+
+.comment-section {
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment-box {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.close-btn {
+    width: 5%;
+    padding: 10px;
+    /* margin-left: 300px; */
+    margin-top: 100px;
+    background: white;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: rgb(89, 184, 89);
+}
+
+.checkbox {
+    width: 20px;
+    height: 30px;
+}
+
+.tdetails {
+    padding: 10PX;
+    text-align: left;
+}

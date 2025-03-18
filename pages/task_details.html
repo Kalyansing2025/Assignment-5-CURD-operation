@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/task_details.css">
+    <title>Task Details</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <input class="checkbox" id="task-checkbox" type="checkbox">
+                <span id="task-name">Loading...</span> <!-- Task name will be set by JS -->
+            </div>
+            <!-- Buttons for Edit and Cancel -->
+            <div id="task-actions">
+                <button id="edit-task-btn" class="btn">✏️ Edit</button>
+                <button id="cancel-task-btn" class="btn">🚫 Cancel</button>
+            </div>
+        </div>
+
+        <!-- Task Owner -->
+        <div class="task-owner">
+            <div class="left">
+                <div class="avatar" id="task-owner-avatar"> </div>
+                <div id="task-owner">Loading...</div>
+            </div>
+            <div class="right">
+                <span><b>Due Date:</b> <span id="due-date">Loading...</span></span>
+                <span class="status" id="task-status">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Details -->
+    <div class="container task-details">
+        <h3>Task Details</h3>
+        <div class="detail"><b>Task Owner:</b> <span id="task-owner-detail">Loading...</span></div>
+        <div class="detail"><b>Task Name:</b> <span id="task-name-detail">Loading...</span></div>
+        <div class="detail"><b>Description:</b> <span id="task-description">Loading...</span></div>
+        <div class="detail"><b>Start Date:</b> <span id="start-date">Loading...</span></div>
+        <div class="detail"><b>Due Date:</b> <span id="due-date-detail">Loading...</span></div>
+        <div class="detail"><b>Reminder:</b> <span id="task-reminder">Loading...</span></div>
+        <div class="detail"><b>Assigned To:</b> <span id="task-assigned">Loading...</span></div>
+        <div class="detail"><b>Priority:</b> <span id="task-priority">Loading...</span></div>
+        <div class="detail"><b>Status:</b> <span id="task-status-detail">Loading...</span></div>
+    </div>
+
+    <!-- Close Button -->
+    <div class="close-btn" id="close-btn">Close</div>
+
+    <script src="../assets/scripts/task_details.js"></script>
+
+</body>
+
+</html>
