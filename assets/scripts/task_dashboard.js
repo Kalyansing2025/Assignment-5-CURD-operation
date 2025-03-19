@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetchTasks(); // ✅ Fetch and display all tasks
+    fetchTasks(); // Fetch and display all tasks
 
     document.getElementById("addTaskBtn").addEventListener("click", function () {
-        window.location.href = "pages/add_task.html"; // ✅ Redirect to add task page
+        window.location.href = "pages/add_task.html"; // Redirect to add task page
     });
 });
 
-// ✅ Function to fetch and display all tasks
+// Function to fetch and display all tasks
 async function fetchTasks() {
     try {
         const response = await fetch("http://localhost:3000/tasks");
-        if (!response.ok) throw new Error("Failed to fetch tasks"); // ✅ Error handling
+        if (!response.ok) throw new Error("Failed to fetch tasks"); // Error handling
 
         const tasks = await response.json();
         const taskContainer = document.querySelector(".task-body");
         if (!taskContainer) return;
 
-        taskContainer.innerHTML = ""; // ✅ Clear previous tasks
+        taskContainer.innerHTML = ""; // Clear previous tasks
 
         let total = tasks.length;
         let completed = tasks.filter(task => task.status === "Completed").length;
@@ -48,7 +48,7 @@ async function fetchTasks() {
 
             taskContainer.appendChild(taskRow);
 
-            // ✅ Attach Event Listeners
+            // Attach Event Listeners
             taskRow.querySelector(".delete-task").addEventListener("click", () => deleteTask(task.id, taskRow));
             taskRow.querySelector(".edit-task").addEventListener("click", () => editTask(task.id));
         });
@@ -57,12 +57,12 @@ async function fetchTasks() {
     }
 }
 
-// ✅ Function to redirect to Task Details Page (Edit)
+// Function to redirect to Task Details Page (Edit)
 function editTask(taskId) {
     window.location.href = `pages/task_details.html?id=${taskId}`;
 }
 
-// ✅ Function to delete a task by ID
+// Function to delete a task by ID
 async function deleteTask(taskId, taskRow) {
     if (!confirm(`Are you sure you want to delete this task?`)) return;
 
@@ -70,7 +70,7 @@ async function deleteTask(taskId, taskRow) {
         const response = await fetch("http://localhost:3000/delete-task", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ task_id: taskId }), // ✅ Use `task_id` instead of `task_name`
+            body: JSON.stringify({ task_id: taskId }), // Use `task_id` instead of `task_name`
         });
 
         const result = await response.json();

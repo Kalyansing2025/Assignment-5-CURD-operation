@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let taskData = {}; // Store the original task data
 
     try {
-        // ✅ Fetch task details
+        // Fetch task details
         const response = await fetch(`http://localhost:3000/task/${taskId}`);
         if (!response.ok) throw new Error("Failed to fetch task details");
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        // ✅ Populate Task Details
+        // Populate Task Details
         document.getElementById("task-name").textContent = taskData.task_name || "Untitled Task";
         document.getElementById("task-owner").textContent = taskData.owner || "Unknown";
         document.getElementById("due-date").textContent = taskData.due_date || "Not Set";
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Error fetching task details:", error);
     }
 
-    // ✅ Function to Toggle Edit Mode
+    // Function to Toggle Edit Mode
     document.getElementById("edit-task-btn").addEventListener("click", function () {
         if (!isEditing) {
             enableEditMode();
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
-    // ✅ Cancel Button Redirects
+    // Cancel Button Redirects
     document.getElementById("cancel-task-btn").addEventListener("click", function () {
         window.location.href = "/task_dashboard.html";
     });
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const priority = document.getElementById("edit-priority").value || "Low"; 
         const status = document.getElementById("edit-status").value || "Pending";
 
-        // ✅ Check Required Fields
+        // Check Required Fields
         if (!taskName || !owner || !startDate || !dueDate || !priority || !status) {
             alert("Please fill all required fields!");
             return;
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert(result.message);
 
             if (response.ok) {
-                // ✅ Reflect Changes in the UI Without Reload
+                // Reflect Changes in the UI Without Reload
                 document.getElementById("task-name-detail").textContent = taskName;
                 document.getElementById("task-owner-detail").textContent = owner;
                 document.getElementById("task-description").textContent = description;
