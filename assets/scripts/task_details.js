@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let taskData = {}; // Store the original task data
 
     try {
-        // Fetch task details
+        // ✅ Fetch task details
         const response = await fetch(`http://localhost:3000/task/${taskId}`);
         if (!response.ok) throw new Error("Failed to fetch task details");
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        // Populate Task Details
+        // ✅ Populate Task Details
         document.getElementById("task-name").textContent = taskData.task_name || "Untitled Task";
         document.getElementById("task-owner").textContent = taskData.owner || "Unknown";
         document.getElementById("due-date").textContent = taskData.due_date || "Not Set";
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error("Error fetching task details:", error);
     }
 
-    // Function to Toggle Edit Mode
+    // ✅ Function to Toggle Edit Mode
     document.getElementById("edit-task-btn").addEventListener("click", function () {
         if (!isEditing) {
             enableEditMode();
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
-    // Cancel Button Redirects
+    // ✅ Cancel Button Redirects
     document.getElementById("cancel-task-btn").addEventListener("click", function () {
         window.location.href = "/task_dashboard.html";
     });
@@ -64,15 +64,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     function enableEditMode() {
         isEditing = true;
         document.getElementById("edit-task-btn").textContent = "💾 Save";
-
-        // Convert text to input fields
+    
+        // ✅ Format Date to "YYYY-MM-DD"
+        const formatDate = (dateString) => {
+            if (!dateString) return "";
+            return new Date(dateString).toISOString().split("T")[0];
+        };
+    
+        // ✅ Set min/max limits for dates
+        const today = new Date().toISOString().split("T")[0]; // Min: Today
+        const maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() + 5); // Max: 5 years from today
+        const maxDateFormatted = maxDate.toISOString().split("T")[0];
+    
         document.getElementById("task-name-detail").innerHTML = `<input type="text" id="edit-task-name" value="${taskData.task_name}">`;
         document.getElementById("task-owner-detail").innerHTML = `<input type="text" id="edit-task-owner" value="${taskData.owner}">`;
         document.getElementById("task-description").innerHTML = `<textarea id="edit-description">${taskData.description || ""}</textarea>`;
-        document.getElementById("start-date").innerHTML = `<input type="date" id="edit-start-date" value="${taskData.start_date}">`;
-        document.getElementById("due-date-detail").innerHTML = `<input type="date" id="edit-due-date" value="${taskData.due_date}">`;
-        document.getElementById("task-reminder").innerHTML = `<input type="date" id="edit-reminder" value="${taskData.reminder || ""}">`;
-
+    
+        document.getElementById("start-date").innerHTML = `<input type="date" id="edit-start-date" value="${formatDate(taskData.start_date)}" min="${today}" max="${maxDateFormatted}">`;
+        document.getElementById("due-date-detail").innerHTML = `<input type="date" id="edit-due-date" value="${formatDate(taskData.due_date)}">`;
+        document.getElementById("task-reminder").innerHTML = `<input type="date" id="edit-reminder" value="${formatDate(taskData.reminder)}">`;
+    
         document.getElementById("task-priority").innerHTML = `
             <select id="edit-priority">
                 <option value="Low">Low</option>
@@ -80,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <option value="High">High</option>
             </select>`;
         document.getElementById("edit-priority").value = taskData.priority || "Low";
-
+    
         document.getElementById("task-status-detail").innerHTML = `
             <select id="edit-status">
                 <option value="Pending">Pending</option>
@@ -88,7 +100,34 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <option value="Completed">Completed</option>
             </select>`;
         document.getElementById("edit-status").value = taskData.status;
+    
+        // ✅ Restrict Due Date and Reminder Based on Start Date
+        const startDateInput = document.getElementById("edit-start-date");
+        const dueDateInput = document.getElementById("edit-due-date");
+        const reminderInput = document.getElementById("edit-reminder");
+    
+        if (startDateInput && dueDateInput) {
+            startDateInput.addEventListener("change", function () {
+                dueDateInput.value = "";
+                dueDateInput.setAttribute("min", this.value);
+                const maxDueDate = new Date(this.value);
+                maxDueDate.setFullYear(maxDueDate.getFullYear() + 5);
+                dueDateInput.setAttribute("max", maxDueDate.toISOString().split("T")[0]);
+            });
+        }
+    
+        if (dueDateInput && reminderInput) {
+            dueDateInput.addEventListener("change", function () {
+                reminderInput.value = "";
+                reminderInput.setAttribute("max", this.value);
+                if (startDateInput.value) {
+                    reminderInput.setAttribute("min", startDateInput.value);
+                }
+            });
+        }
     }
+    
+    
 
     async function saveTaskChanges(taskId) {
         isEditing = false;
@@ -103,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const priority = document.getElementById("edit-priority").value || "Low"; 
         const status = document.getElementById("edit-status").value || "Pending";
 
-        // Check Required Fields
+        // ✅ Check Required Fields
         if (!taskName || !owner || !startDate || !dueDate || !priority || !status) {
             alert("Please fill all required fields!");
             return;
@@ -132,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert(result.message);
 
             if (response.ok) {
-                // Reflect Changes in the UI Without Reload
+                // ✅ Reflect Changes in the UI Without Reload
                 document.getElementById("task-name-detail").textContent = taskName;
                 document.getElementById("task-owner-detail").textContent = owner;
                 document.getElementById("task-description").textContent = description;

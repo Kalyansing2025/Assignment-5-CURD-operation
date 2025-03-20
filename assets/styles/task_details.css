@@ -138,3 +138,14 @@ body {
     padding: 10PX;
     text-align: left;
 }
+
+.task-detail{
+
+    padding: 15px;
+    margin-left: 100px;
+   
+}
+.task-detail-a{
+    
+    margin-left: 50px;
+}

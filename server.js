@@ -15,7 +15,7 @@ const db = mysql.createPool({
     user: "root", 
     password: "Pass@123", 
     database: "task_manager", 
-    waitForConnections: true,
+    waitForConnections: true, 
     connectionLimit: 10,
     queueLimit: 0
 }).promise();
@@ -71,34 +71,41 @@ app.delete("/delete-task", async (req, res) => {
 
 
 
-//  Update Task Route (Supports All Fields)
+// Update Task Route (Supports All Fields)
 app.put("/update-task", async (req, res) => {
-    console.log("Update request received:", req.body);
+    console.log("🔹 Update request received:", req.body);
 
     const { task_id, owner, task_name, description, start_date, due_date, reminder, priority, status } = req.body;
 
-    if (!task_id || !owner || !task_name || !description || !start_date || !due_date || !reminder || !priority || !status) {
-        return res.status(400).json({ message: "All fields are required!" });
+    // Validation: Ensure required fields are present
+    if (!task_id || !owner || !task_name || !description || !start_date || !due_date || !priority || !status) {
+        return res.status(400).json({ message: "All required fields must be filled!" });
     }
 
     try {
+        //  Update task in the database
         const [result] = await db.execute(
-            "UPDATE tasks SET owner = ?, task_name = ?, description = ?, start_date = ?, due_date = ?, reminder = ?, priority = ?, status = ? WHERE id = ?",
-            [owner, task_name, description, start_date, due_date, reminder, priority, status, task_id]
+            `UPDATE tasks 
+             SET owner = ?, task_name = ?, description = ?, start_date = ?, due_date = ?, reminder = ?, priority = ?, status = ? 
+             WHERE id = ?`,
+            [owner, task_name, description, start_date, due_date, reminder || null, priority, status, task_id]
         );
 
-        console.log("SQL Update Result:", result);
+        console.log("✅ SQL Update Result:", result);
 
+        //  If no rows were affected, return "Task not found"
         if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Task not found or no changes made" });
+            return res.status(404).json({ message: "Task not found or no changes made." });
         }
 
+        // Success Response
         res.json({ message: "Task updated successfully!" });
     } catch (error) {
-        console.error("Error updating task:", error);
-        res.status(500).json({ message: "Failed to update task" });
+        console.error("❌ Error updating task:", error);
+        res.status(500).json({ message: "Internal server error. Please try again later." });
     }
 });
+
 
 //  Add Task Route
 app.post("/add-task", async (req, res) => {
